@@ -28,6 +28,10 @@ def insert_in_order(head, new_data):
     
     current = head
     
+    if new_node.data == current.data:
+        print("the value", new_node.data,"already exists in the list. type in the list")
+        return head 
+    
     while current.next is not None and current.next.data < new_node.data:
         current = current.next
         
@@ -44,19 +48,19 @@ def insert_in_order(head, new_data):
 
 def imprimir_normal(head):
     if head is None:
-        print("Lista vazia")
+        print("List null")
     else:
         current = head
         while current is not None:
             print(current.data)
             current = current.next
-    print("Lista:", head)
+    print("List:", head)
 
 head = None
 
 while True:
     try:
-        value = int(input("Digite um elemento (ou uma letra para parar): "))
+        value = int(input("insert element: "))
         head = insert_in_order(head, value)
     except ValueError:
         break
@@ -64,3 +68,20 @@ while True:
 
 
     imprimir_normal(head)
+
+def imprimirReverso(head):
+    if head is None:
+        print("is null")
+    else:
+        current = head
+        while current.next is not None:
+            current = current.next 
+        
+        imprimirReversoRecursivo(current)
+
+def imprimirReversoRecursivo(node):
+    if node is not None:
+        print(node.data)
+        imprimirReversoRecursivo(node.prev)
+
+imprimirReverso(head)
